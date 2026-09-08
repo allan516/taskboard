@@ -1,27 +1,14 @@
-// import { Router } from './router/router';
+import { QueryClientProvider } from '@tanstack/react-query';
 
-// function App() {
-//   return <Router />;
-// }
-
-// export { App };
-
-import { useEffect } from 'react';
-
-import { getMe } from '@/features/auth/api/getMe';
+import { queryClient } from './queryClient';
+import { Router } from './router/router';
 
 function App() {
-  useEffect(() => {
-    getMe()
-      .then((user) => {
-        console.log('Usuário autenticado:', user);
-      })
-      .catch((error) => {
-        console.error('Erro ao buscar usuário:', error);
-      });
-  }, []);
-
-  return <h1>TaskBoard</h1>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router />
+    </QueryClientProvider>
+  );
 }
 
 export { App };

@@ -1,46 +1,69 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { useForm } from 'react-hook-form';
+
 import { useNavigate } from 'react-router';
 
-import { useLoginUser } from '@/features/auth';
+import { useRegisterUser } from '@/features/auth';
 
-import { loginFormSchema, type LoginFormData } from '../model/loginFormSchema';
+import {
+  registerFormSchema,
+  type RegisterFormData,
+} from '../model/registerFormSchema';
 
 import styles from './style.module.css';
 
-function LoginPage() {
+function RegisterPage() {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginFormData>({
-    resolver: zodResolver(loginFormSchema),
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerFormSchema),
   });
 
-  const loginUser = useLoginUser();
+  const registerUser = useRegisterUser();
 
   const navigate = useNavigate();
 
-  function handleLogin(data: LoginFormData) {
-    loginUser.mutate(data, {
+  function handleRegister(data: RegisterFormData) {
+    registerUser.mutate(data, {
       onSuccess: () => {
-        navigate('/tasks');
+        navigate('/login');
       },
     });
   }
 
-  function handleRegister() {
-    navigate('/register');
+  function handleLogin() {
+    navigate('/login');
   }
 
   return (
     <main className={styles.page}>
       <section className={styles.container}>
-        <h1 className={styles.title}>Login</h1>
+        <h1 className={styles.title}>Criar conta</h1>
 
-        <p className={styles.subtitle}>Entre na sua conta para continuar</p>
+        <p className={styles.subtitle}>Crie sua conta para começar</p>
 
-        <form className={styles.form} onSubmit={handleSubmit(handleLogin)}>
+        <form className={styles.form} onSubmit={handleSubmit(handleRegister)}>
+          <div className={styles.field}>
+            <label className={styles.label} htmlFor='name'>
+              Nome
+            </label>
+
+            <input
+              className={styles.input}
+              id='name'
+              type='text'
+              placeholder='Seu nome'
+              {...register('name')}
+            />
+
+            {errors.name && (
+              <p className={styles.error}>{errors.name.message}</p>
+            )}
+          </div>
+
           <div className={styles.field}>
             <label className={styles.label} htmlFor='email'>
               E-mail
@@ -77,24 +100,28 @@ function LoginPage() {
             )}
           </div>
 
+          {registerUser.isError && (
+            <p className={styles.error}>Não foi possível criar sua conta.</p>
+          )}
+
           <button
             className={styles.button}
             type='submit'
-            disabled={loginUser.isPending}
+            disabled={registerUser.isPending}
           >
-            {loginUser.isPending ? 'Entrando...' : 'Entrar'}
+            {registerUser.isPending ? 'Criando...' : 'Criar conta'}
           </button>
         </form>
 
-        <div className={styles.register}>
-          <p className={styles.registerText}>Ainda não possui uma conta?</p>
+        <div className={styles.login}>
+          <p className={styles.loginText}>Já possui uma conta?</p>
 
           <button
-            className={styles.registerButton}
+            className={styles.loginButton}
             type='button'
-            onClick={handleRegister}
+            onClick={handleLogin}
           >
-            Criar conta
+            Voltar para o login
           </button>
         </div>
       </section>
@@ -102,4 +129,4 @@ function LoginPage() {
   );
 }
 
-export { LoginPage };
+export { RegisterPage };
