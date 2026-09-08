@@ -8,6 +8,7 @@ export function useCurrentUser() {
   return useQuery({
     queryKey: ['me'],
     queryFn: getMe,
+
     retry: (failureCount, error) => {
       if (isHttpError(error) && error.status === 401) {
         return false;

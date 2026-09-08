@@ -1,0 +1,625 @@
+.page {
+  min-height: 100vh;
+
+  padding: 48px 32px;
+
+  box-sizing: border-box;
+
+  background: var(--neutral-bg);
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+
+  margin: 0 auto;
+
+  box-sizing: border-box;
+
+  background: var(--bg);
+
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  box-shadow: var(--shadow);
+
+  overflow: hidden;
+}
+
+.header {
+  padding: 40px 48px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  display: inline-block;
+
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: var(--primary);
+}
+
+.title {
+  margin: 0 0 8px;
+
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  color: var(--text-h);
+}
+
+.subtitle {
+  max-width: 620px;
+
+  margin: 0;
+
+  font-size: 15px;
+
+  color: var(--text);
+}
+
+/* Sections */
+
+.section {
+  padding: 36px 48px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+  border-bottom: 0;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 32px;
+
+  margin-bottom: 28px;
+}
+
+.sectionTitle {
+  margin: 0 0 6px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: var(--text-h);
+}
+
+.sectionDescription {
+  margin: 0;
+
+  font-size: 14px;
+
+  color: var(--text);
+}
+
+/* Dados */
+
+.profileData,
+.accountData,
+.securityInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  padding: 18px 0;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.dataRow:first-child {
+  padding-top: 0;
+}
+
+.dataRow:last-child {
+  padding-bottom: 0;
+
+  border-bottom: 0;
+}
+
+.dataLabel {
+  display: block;
+
+  margin-bottom: 5px;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  color: var(--text);
+}
+
+.dataValue {
+  display: block;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  color: var(--text-h);
+}
+
+/* Status */
+
+.statusSuccess,
+.statusWarning {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.statusSuccess {
+  color: var(--success-hover);
+
+  background: var(--success-bg);
+
+  border: 1px solid var(--success-border);
+}
+
+.statusWarning {
+  color: var(--warning-hover);
+
+  background: var(--warning-bg);
+
+  border: 1px solid var(--warning-border);
+}
+
+/* Botões secundários */
+
+.secondaryButton {
+  flex-shrink: 0;
+
+  padding: 9px 15px;
+
+  border: 1px solid var(--primary-border);
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--primary);
+
+  background: var(--primary-bg);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.secondaryButton:hover {
+  color: var(--primary-hover);
+
+  background: var(--primary-bg);
+
+  border-color: var(--primary);
+}
+
+.secondaryButton:active {
+  transform: translateY(1px);
+}
+
+.secondaryButton:focus-visible {
+  outline: 3px solid var(--primary-bg);
+
+  outline-offset: 2px;
+}
+
+.secondaryButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.5;
+}
+
+/* Formulários */
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+
+  max-width: 680px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--text-h);
+}
+
+.input {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  outline: none;
+
+  font: inherit;
+  font-size: 15px;
+
+  color: var(--text-h);
+
+  background: var(--bg);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.input:hover {
+  border-color: var(--neutral-border);
+}
+
+.input:focus {
+  border-color: var(--primary);
+
+  box-shadow: 0 0 0 3px var(--primary-bg);
+}
+
+.input:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+
+  background: var(--neutral-bg);
+}
+
+.fieldError {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: var(--danger);
+}
+
+/* Ações do formulário */
+
+.formActions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  padding-top: 4px;
+}
+
+.primaryButton,
+.cancelButton {
+  padding: 10px 16px;
+
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.primaryButton {
+  border: 1px solid var(--primary);
+
+  color: #fff;
+
+  background: var(--primary);
+}
+
+.primaryButton:hover {
+  border-color: var(--primary-hover);
+
+  background: var(--primary-hover);
+}
+
+.primaryButton:active,
+.cancelButton:active {
+  transform: translateY(1px);
+}
+
+.primaryButton:focus-visible,
+.cancelButton:focus-visible {
+  outline: 3px solid var(--primary-bg);
+
+  outline-offset: 2px;
+}
+
+.primaryButton:disabled,
+.cancelButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+}
+
+.cancelButton {
+  border: 1px solid var(--neutral-border);
+
+  color: var(--text);
+
+  background: var(--neutral-bg);
+}
+
+.cancelButton:hover {
+  border-color: var(--border);
+
+  color: var(--text-h);
+
+  background: var(--neutral-hover);
+}
+
+/* Segurança */
+
+.securityInfo {
+  padding-top: 0;
+}
+
+/* Mensagens */
+
+.error,
+.success {
+  margin: 0;
+
+  padding: 10px 12px;
+
+  border-radius: 8px;
+
+  font-size: 14px;
+}
+
+.error {
+  border: 1px solid var(--danger-border);
+
+  color: var(--danger);
+
+  background: var(--danger-bg);
+}
+
+.success {
+  border: 1px solid var(--success-border);
+
+  color: var(--success-hover);
+
+  background: var(--success-bg);
+}
+
+.message {
+  margin: 0;
+
+  padding: 40px 48px;
+
+  color: var(--text);
+}
+
+/* Zona de perigo */
+
+.dangerSection {
+  padding: 36px 48px;
+
+  background: var(--danger-bg);
+}
+
+.dangerTitle {
+  margin: 0 0 6px;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: var(--danger);
+}
+
+.dangerContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 32px;
+
+  padding: 20px;
+
+  border: 1px solid var(--danger-border);
+  border-radius: 10px;
+
+  background: var(--bg);
+}
+
+.dangerActionTitle {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: var(--text-h);
+}
+
+.dangerActionDescription {
+  margin: 0;
+
+  font-size: 13px;
+
+  color: var(--text);
+}
+
+.deleteButton {
+  flex-shrink: 0;
+
+  padding: 10px 16px;
+
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--danger);
+
+  background: var(--bg);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.deleteButton:hover {
+  color: #fff;
+
+  background: var(--danger);
+
+  border-color: var(--danger);
+}
+
+.deleteButton:active {
+  transform: translateY(1px);
+}
+
+.deleteButton:focus-visible {
+  outline: 3px solid var(--danger-bg);
+
+  outline-offset: 2px;
+}
+
+.deleteButton:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.6;
+}
+
+/* Responsividade */
+
+@media (max-width: 800px) {
+  .page {
+    padding: 32px 20px;
+  }
+
+  .header {
+    padding: 32px;
+  }
+
+  .section,
+  .dangerSection {
+    padding: 32px;
+  }
+
+  .sectionHeader {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 16px;
+  }
+
+  .header {
+    padding: 28px 24px;
+  }
+
+  .section,
+  .dangerSection {
+    padding: 28px 24px;
+  }
+
+  .sectionHeader {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .secondaryButton {
+    align-self: flex-start;
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .dataRow {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  .dataValue {
+    word-break: break-word;
+  }
+
+  .form {
+    max-width: none;
+  }
+
+  .formActions {
+    align-items: stretch;
+
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .cancelButton {
+    width: 100%;
+  }
+
+  .dangerContent {
+    align-items: stretch;
+
+    flex-direction: column;
+
+    gap: 20px;
+  }
+
+  .deleteButton {
+    width: 100%;
+  }
+}

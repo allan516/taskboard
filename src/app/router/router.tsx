@@ -5,6 +5,7 @@ import { TaskPage } from '@/pages/tasks';
 
 import { ProtectedRoute } from './protectedRoute';
 import { RegisterPage } from '@/pages/register';
+import { UserPage } from '@/pages/user';
 
 export function Router() {
   return (
@@ -15,6 +16,7 @@ export function Router() {
 
         <Route element={<ProtectedRoute />}>
           <Route path='/tasks' element={<TaskPage />} />
+          <Route path='/me' element={<UserPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
