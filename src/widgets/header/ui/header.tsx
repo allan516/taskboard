@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router';
 
 import { useLogoutUser } from '@/features/auth';
+import { useCurrentUser } from '@/entities/user';
 
 import styles from './style.module.css';
 
@@ -8,6 +9,7 @@ function Header() {
   const navigate = useNavigate();
 
   const logoutUser = useLogoutUser();
+  const { data: currentUser } = useCurrentUser();
 
   function handleTasks() {
     navigate('/tasks');
@@ -15,6 +17,10 @@ function Header() {
 
   function handleProfile() {
     navigate('/me');
+  }
+
+  function handleAdmin() {
+    navigate('/admin');
   }
 
   function handleLogout() {
@@ -50,6 +56,16 @@ function Header() {
           >
             Meu perfil
           </button>
+
+          {currentUser?.id === 5 && (
+            <button
+              className={styles.navButton}
+              type='button'
+              onClick={handleAdmin}
+            >
+              Admin
+            </button>
+          )}
 
           <button
             className={styles.logoutButton}

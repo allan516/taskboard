@@ -2,19 +2,27 @@ import { useState } from 'react';
 
 import { useCreateTask, useDeleteTask, useUpdateTask } from '@/features/task';
 
+import { useCurrentUser } from '@/entities/user';
+
 import { useTasks } from '@/entities/task';
 
 import styles from './style.module.css';
 
 function TaskPage() {
   const [title, setTitle] = useState('');
+
   const [editingTaskId, setEditingTaskId] = useState<number | null>(null);
+
   const [editingTitle, setEditingTitle] = useState('');
 
   const { data: tasks, isLoading, isError } = useTasks();
 
+  const { data: user } = useCurrentUser();
+
   const createTask = useCreateTask();
+
   const updateTask = useUpdateTask();
+
   const deleteTask = useDeleteTask();
 
   function handleCreateTask(event: React.FormEvent<HTMLFormElement>) {
@@ -110,6 +118,8 @@ function TaskPage() {
       <section className={styles.container}>
         <header className={styles.header}>
           <div>
+            <p className={styles.greeting}>Olá, {user?.name}! 👋</p>
+
             <h1 className={styles.title}>Minhas tarefas</h1>
 
             <p className={styles.subtitle}>Gerencie suas tarefas</p>

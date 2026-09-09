@@ -19,6 +19,13 @@
   margin-bottom: 32px;
 }
 
+.greeting {
+  margin: 0 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary);
+}
+
 .title {
   margin: 0 0 8px;
   font-size: 32px;
