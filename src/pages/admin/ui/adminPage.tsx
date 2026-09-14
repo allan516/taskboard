@@ -65,6 +65,7 @@ function AdminPage() {
       </main>
     );
   }
+  const usersCount = users && users.length > 0 ? users.length - 1 : 0;
 
   return (
     <main className={styles.page}>
@@ -78,7 +79,7 @@ function AdminPage() {
             </p>
           </div>
 
-          <span className={styles.count}>{users?.length ?? 0} usuários</span>
+          <span className={styles.count}>{usersCount} usuários</span>
         </header>
 
         <section className={styles.userList}>
@@ -87,7 +88,9 @@ function AdminPage() {
           ) : (
             users?.map((user: User) => {
               const isCurrentUser = user.id === currentUserId;
-
+              if (isCurrentUser) {
+                return null;
+              }
               const isUpdating =
                 updateUserStatus.isPending &&
                 updateUserStatus.variables?.id === user.id;

@@ -26,9 +26,6 @@ export async function http<T>(
       const refreshResponse = await fetch(`${API_URL}/auth/refresh`, {
         method: 'POST',
         credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
       });
 
       if (refreshResponse.ok) {

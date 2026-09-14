@@ -163,6 +163,8 @@ function UserPage() {
     );
   }
 
+  const admin = user.id === 5;
+
   return (
     <main className={styles.page}>
       <section className={styles.container}>
@@ -446,42 +448,44 @@ function UserPage() {
           </div>
         </section>
 
-        <section className={styles.dangerSection}>
-          <div className={styles.sectionHeader}>
-            <div>
-              <h2 className={styles.dangerTitle}>Zona de perigo</h2>
+        {!admin && (
+          <section className={styles.dangerSection}>
+            <div className={styles.sectionHeader}>
+              <div>
+                <h2 className={styles.dangerTitle}>Zona de perigo</h2>
 
-              <p className={styles.sectionDescription}>
-                A exclusão da sua conta é permanente e não pode ser desfeita.
-              </p>
-            </div>
-          </div>
-
-          <div className={styles.dangerContent}>
-            <div>
-              <span className={styles.dangerActionTitle}>Excluir conta</span>
-
-              <p className={styles.dangerActionDescription}>
-                Sua conta e os dados associados serão removidos.
-              </p>
+                <p className={styles.sectionDescription}>
+                  A exclusão da sua conta é permanente e não pode ser desfeita.
+                </p>
+              </div>
             </div>
 
-            <button
-              className={styles.deleteButton}
-              type='button'
-              onClick={handleDeleteAccount}
-              disabled={deleteMe.isPending}
-            >
-              {deleteMe.isPending ? 'Excluindo...' : 'Excluir conta'}
-            </button>
-          </div>
+            <div className={styles.dangerContent}>
+              <div>
+                <span className={styles.dangerActionTitle}>Excluir conta</span>
 
-          {deleteMe.isError && (
-            <p className={styles.error}>
-              Não foi possível excluir sua conta. Tente novamente.
-            </p>
-          )}
-        </section>
+                <p className={styles.dangerActionDescription}>
+                  Sua conta e os dados associados serão removidos.
+                </p>
+              </div>
+
+              <button
+                className={styles.deleteButton}
+                type='button'
+                onClick={handleDeleteAccount}
+                disabled={deleteMe.isPending}
+              >
+                {deleteMe.isPending ? 'Excluindo...' : 'Excluir conta'}
+              </button>
+            </div>
+
+            {deleteMe.isError && (
+              <p className={styles.error}>
+                Não foi possível excluir sua conta. Tente novamente.
+              </p>
+            )}
+          </section>
+        )}
       </section>
     </main>
   );

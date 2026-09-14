@@ -1,14 +1,18 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 
 import { useLoginUser } from '@/features/auth';
+import type { HttpError } from '@/shared/api/httpError';
 
 import { loginFormSchema, type LoginFormData } from '../model/loginFormSchema';
 
 import styles from './style.module.css';
 
 function LoginPage() {
+  const [loginError, setLoginError] = useState('');
+
   const {
     register,
     handleSubmit,
@@ -22,9 +26,22 @@ function LoginPage() {
   const navigate = useNavigate();
 
   function handleLogin(data: LoginFormData) {
+    setLoginError('');
+
     loginUser.mutate(data, {
       onSuccess: () => {
         navigate('/tasks');
+      },
+
+      onError: (error) => {
+        const httpError = error as HttpError;
+
+        if (httpError.status === 401) {
+          setLoginError('E-mail ou senha inválidos.');
+          return;
+        }
+
+        setLoginError('Não foi possível realizar o login. Tente novamente.');
       },
     });
   }
@@ -84,6 +101,12 @@ function LoginPage() {
           >
             {loginUser.isPending ? 'Entrando...' : 'Entrar'}
           </button>
+
+          {loginError && (
+            <p className={styles.error} role='alert'>
+              {loginError}
+            </p>
+          )}
         </form>
 
         <div className={styles.register}>
